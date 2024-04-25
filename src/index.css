@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --primary-50: #e8ebff;
+ --primary-100: #b5c1ff;
+  --primary-200: #8296ff;
+   --primary-300: #4f6cff;
+   --primary-400: #2851ff;
+    --primary-500: #242f9c;
+     --primary-600: #1e257d;
+      --primary-700: #191e67;
+       --primary-800: #131551;
+        --primary-900: #0e103e; */
+
+.active {
+  color: white;
+  background: linear-gradient(to right, #242f9c, #b5c1ff);
+  border-bottom-right-radius: 25px;
+  border-top-right-radius: 25px;
+  margin-right: 10px;
+}
+.active:hover {
+  color: white !important;
+  opacity: 0.8;
+}
+
+.link:hover {
+  color: #242f9c;
+}
