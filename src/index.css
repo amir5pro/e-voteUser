@@ -16,6 +16,7 @@
 .active {
   color: white;
   background: linear-gradient(to right, #242f9c, #b5c1ff);
+  /* background-color: #242f9c; */
   border-bottom-right-radius: 25px;
   border-top-right-radius: 25px;
   margin-right: 10px;

@@ -10,7 +10,7 @@ const Prevote = () => {
         <Text className="text-primary-500 text-[20px]" strong>
           Welcome to Preliminary Voting!
         </Text>
-        <Text strong>
+        <Text>
           Choose your candidates! Cast your preliminary vote now to select the
           candidates that will compete in the election.
         </Text>

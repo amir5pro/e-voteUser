@@ -97,7 +97,7 @@ const App = () => {
             style={{
               padding: 24,
               textAlign: "center",
-              background: "transparent",
+              background: colorBgContainer,
               borderRadius: borderRadiusLG,
               height: "100%",
             }}

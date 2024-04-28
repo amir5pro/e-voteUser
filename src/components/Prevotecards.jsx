@@ -39,7 +39,7 @@ const Prevotecards = () => {
           <Text className="text-primary-500 text-[20px]" strong>
             Candidates for Student Union President position
           </Text>
-          <Text>You can only Select 4 candidates</Text>
+          <Text type="secondary">You can only Select 4 candidates</Text>
         </div>
         <div className="flex gap-3 justify-center my-[20px]">
           <div>
@@ -61,7 +61,7 @@ const Prevotecards = () => {
           <Text className="text-primary-500 text-[20px]" strong>
             Candidates for Student Union vice President position
           </Text>
-          <Text>You can only Select 4 candidates</Text>
+          <Text type="secondary">You can only Select 4 candidates</Text>
         </div>
         <div className="flex gap-3 justify-center my-[20px]">
           <div>
@@ -83,7 +83,7 @@ const Prevotecards = () => {
           <Text className="text-primary-500 text-[20px]" strong>
             Candidates for Student Union secretary position
           </Text>
-          <Text>You can only Select 4 candidates</Text>
+          <Text type="secondary">You can only Select 4 candidates</Text>
         </div>
         <div className="flex gap-3 justify-center my-[20px]">
           <div>
@@ -105,7 +105,7 @@ const Prevotecards = () => {
           <Text className="text-primary-500 text-[20px]" strong>
             Candidates for Student Union vice secretary position
           </Text>
-          <Text>You can only Select 4 candidates</Text>
+          <Text type="secondary">You can only Select 4 candidates</Text>
         </div>
         <div className="flex gap-3 justify-center my-[20px]">
           <div>
