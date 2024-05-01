@@ -3,8 +3,11 @@ import { Progress, Typography } from "antd";
 const { Text } = Typography;
 const Circle = () => {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 place-items-center py-[20px]">
-      <div className="flex flex-col gap-[10px]">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-[15px] px-[6px] md:gap-[50px] md:px-[30px] py-[20px]">
+      <div
+        className="flex flex-col gap-[10px] border-b-primary-500 border-b-[5px] border border-gray-200  bg-white 
+         shadow-lg rounded-2xl p-[7px]"
+      >
         <Progress
           type="circle"
           steps={10}
@@ -15,7 +18,10 @@ const Circle = () => {
         />
         <Text>Candidate 1</Text>
       </div>
-      <div className="flex flex-col gap-[10px]">
+      <div
+        className="flex flex-col gap-[10px] border-b-primary-500 border-b-[5px] border border-gray-200  bg-white 
+         shadow-lg rounded-2xl p-[7px]"
+      >
         <Progress
           type="circle"
           steps={8}
@@ -26,7 +32,10 @@ const Circle = () => {
         />
         <Text>Candidate 1</Text>
       </div>
-      <div className="flex flex-col gap-[10px]">
+      <div
+        className="flex flex-col gap-[10px] border-b-primary-500 border-b-[5px] border border-gray-200  bg-white 
+         shadow-lg rounded-2xl p-[7px]"
+      >
         <Progress
           type="circle"
           steps={8}
@@ -37,7 +46,10 @@ const Circle = () => {
         />
         <Text>Candidate 1</Text>
       </div>
-      <div className="flex flex-col gap-[10px]">
+      <div
+        className="flex flex-col gap-[10px] border-b-primary-500 border-b-[5px] border border-gray-200  bg-white 
+         shadow-lg rounded-2xl p-[7px]"
+      >
         <Progress
           type="circle"
           steps={8}

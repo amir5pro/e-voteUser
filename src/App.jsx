@@ -5,7 +5,7 @@ import LandingLayout from "./pages/LandingLayout";
 import Landing from "./pages/Landing";
 import DashboardLayout from "./pages/DashboardLayout";
 import AdminLogin from "./pages/AdminLogin";
-import OfficerLogin from "./pages/OfficerLogin";
+
 import VoterRegister from "./pages/VoterRegister";
 import VoterLogin from "./pages/VoterLogin";
 import CandidateLogin from "./pages/CandidateLogin";
@@ -29,10 +29,7 @@ const router = createBrowserRouter([
         path: "adminlogin",
         element: <AdminLogin />,
       },
-      {
-        path: "officerlogin",
-        element: <OfficerLogin />,
-      },
+
       {
         path: "voterRegister",
         element: <VoterRegister />,

@@ -1,18 +1,18 @@
 import React from "react";
-import { FaVoteYea } from "react-icons/fa";
-import { GiVote } from "react-icons/gi";
-import { FaUser } from "react-icons/fa";
-import { FaCheckCircle } from "react-icons/fa";
+import { MdHowToVote } from "react-icons/md";
+import { LiaVoteYeaSolid } from "react-icons/lia";
+import { FaRegUser } from "react-icons/fa";
+import { GrScorecard } from "react-icons/gr";
 import { ImStatsDots } from "react-icons/im";
-import { MdAdminPanelSettings } from "react-icons/md";
+import { MdOutlineAdminPanelSettings } from "react-icons/md";
 
 const Links = [
-  { text: "vote", path: ".", icon: <FaVoteYea /> },
-  { text: "preliminary vote", path: "preVote", icon: <GiVote /> },
-  { text: "candidates", path: "candidates", icon: <FaUser /> },
-  { text: "results", path: "results", icon: <FaCheckCircle /> },
+  { text: "vote", path: ".", icon: <MdHowToVote /> },
+  { text: "preliminary vote", path: "preVote", icon: <LiaVoteYeaSolid /> },
+  { text: "candidates", path: "candidates", icon: <FaRegUser /> },
+  { text: "results", path: "results", icon: <GrScorecard /> },
   { text: "stats", path: "stats", icon: <ImStatsDots /> },
-  { text: "admin", path: "admin", icon: <MdAdminPanelSettings /> },
+  { text: "admin", path: "admin", icon: <MdOutlineAdminPanelSettings /> },
 ];
 
 export default Links;

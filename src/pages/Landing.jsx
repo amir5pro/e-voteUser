@@ -3,10 +3,13 @@ import hulogo from "../assets/image.png";
 import vote from "../assets/vote.png";
 import { Typography } from "antd";
 import { Link } from "react-router-dom";
+import { IoIosMenu } from "react-icons/io";
+import LandingDrawer from "../components/LandingDrawer";
 
 const { Text } = Typography;
 const Landing = () => {
   const [viewBoxY, setViewBoxY] = useState(110);
+  const [openHomeDrawer, setOpenHomeDrawer] = useState(false);
 
   useEffect(() => {
     const updateViewBoxY = () => {
@@ -31,7 +34,7 @@ const Landing = () => {
   }, []);
 
   return (
-    <div className="h-screen ">
+    <div className="min-h-screen ">
       <div className="w-full relative">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -51,10 +54,24 @@ const Landing = () => {
         <div className="absolute top-0 left-0 w-full  px-[30px] py-[6px]">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <img src={hulogo} className="h-20 w-20" alt="logo" />
-              <Text className="text-white text-2xl">Hawassa University</Text>
+              <img
+                src={hulogo}
+                className=" h-10 w-10    md:h-20 md:w-20"
+                alt="logo"
+              />
+              <Text className="text-white text-[15px] md:text-2xl">
+                Hawassa University
+              </Text>
             </div>
-            <div className="flex items-center gap-8  ">
+            <div className="md:hidden">
+              <IoIosMenu
+                style={{ color: "white" }}
+                size={27}
+                onClick={() => setOpenHomeDrawer(true)}
+              />
+            </div>
+
+            <div className="md:flex items-center gap-8 hidden  ">
               <Link to="voterlogin">
                 <Text
                   className="text-white hover:cursor-pointer hover:opacity-80"
@@ -78,23 +95,19 @@ const Landing = () => {
                   </Text>
                 </button>
               </Link>{" "}
-              <Link to="officerlogin">
-                <button className="py-[5px] px-[15px] bg-transparent border border-1 border-white rounded-3xl hover:opacity-75 border-opacity-80 ">
-                  <Text className="text-white" strong>
-                    Officer Login
-                  </Text>{" "}
-                </button>
-              </Link>
             </div>
           </div>
         </div>
       </div>
-      <div className="px-[30px] flex flex-col lg:flex-row items-center justify-evenly mt-[50px] lg:mt-0 gap-9 lg:gap-0">
+      <div className="px-[30px] flex flex-col lg:flex-row items-center justify-evenly mt-[50px] 2xl:mt-[65px] lg:mt-0 gap-9 lg:gap-0">
         <div className="flex flex-col  items-center gap-5 max-w-[600px]">
-          <Text className="text-primary-500 text-[40px] text-center " strong>
+          <Text
+            className="text-primary-500 text-[25px] md:text-[40px] text-center "
+            strong
+          >
             Student Union Online Voting System
           </Text>
-          <Text className=" text-[20px] text-center text-primary-500">
+          <Text className=" text-[17px] md:text-[20px] text-center ">
             Empowering student voices through secure and accessible online
             voting
           </Text>
@@ -113,6 +126,12 @@ const Landing = () => {
         <div>
           <img src={vote} />
         </div>
+      </div>
+      <div>
+        <LandingDrawer
+          openHomeDrawer={openHomeDrawer}
+          setOpenHomeDrawer={setOpenHomeDrawer}
+        />
       </div>
     </div>
   );

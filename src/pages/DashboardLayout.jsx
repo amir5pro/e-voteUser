@@ -5,9 +5,14 @@ const { Header, Content, Footer, Sider } = Layout;
 import hulogo from "../assets/image.png";
 import { NavLink, Outlet } from "react-router-dom";
 import Links from "../utils/Links";
+import { IoIosMenu } from "react-icons/io";
+import DashDrawer from "../components/DashDrawer";
+
 const { Text } = Typography;
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const [openDrawer, setOpenDrawer] = useState(false);
+
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -80,11 +85,14 @@ const App = () => {
           >
             {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
           </div>
+          <div className="md:hidden  p-[15px]">
+            <IoIosMenu size={27} onClick={() => setOpenDrawer(true)} />
+          </div>
           <Text
             className="absolute top-0 left-[50%] translate-x-[-50%] mt-[20px]  text-primary-500  lg:text-[20px] "
             strong
           >
-            Student Union Online Voting System
+            Student Union Voting System
           </Text>
         </Header>
         <Content
@@ -95,7 +103,7 @@ const App = () => {
         >
           <div
             style={{
-              padding: 24,
+              padding: 16,
               textAlign: "center",
               background: colorBgContainer,
               borderRadius: borderRadiusLG,
@@ -103,6 +111,7 @@ const App = () => {
             }}
           >
             <Outlet />
+            <DashDrawer openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
           </div>
         </Content>
       </Layout>

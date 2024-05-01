@@ -41,9 +41,7 @@ const Results = () => {
           className="py-[40px] "
         >
           <div>
-            <Text className="text-primary-500 text-[20px]" strong>
-              Student Union President
-            </Text>
+            <Text className=" text-[20px]">Student Union President</Text>
             <div>
               <Circle />
             </div>
@@ -52,9 +50,7 @@ const Results = () => {
             </div>
           </div>
           <div>
-            <Text className="text-primary-500 text-[20px]" strong>
-              Student Union Vice President
-            </Text>
+            <Text className=" text-[20px]">Student Union Vice President</Text>
             <div>
               <Circle />
             </div>
@@ -63,9 +59,7 @@ const Results = () => {
             </div>
           </div>
           <div>
-            <Text className="text-primary-500 text-[20px]" strong>
-              Student Union Secretary
-            </Text>
+            <Text className=" text-[20px]">Student Union Secretary</Text>
             <div>
               <Circle />
             </div>
@@ -74,9 +68,7 @@ const Results = () => {
             </div>
           </div>
           <div>
-            <Text className="text-primary-500 text-[20px]" strong>
-              Student Union Vice Secretary
-            </Text>
+            <Text className=" text-[20px]">Student Union Vice Secretary</Text>
             <div>
               <Circle />
             </div>

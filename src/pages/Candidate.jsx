@@ -50,10 +50,7 @@ const Candidate = () => {
           </div>
           <div>
             <Upload {...props}>
-              <Button
-                icon={<UploadOutlined />}
-                className="text-primary-500 border border-primary-500 hover:opacity-85"
-              >
+              <Button icon={<UploadOutlined />} type="primary">
                 Upload photo
               </Button>
             </Upload>
@@ -104,7 +101,7 @@ const Candidate = () => {
             <div>
               <Button
                 icon={<MdOutlineEdit />}
-                className="text-primary-500 border border-primary-500 hover:opacity-85"
+                type="primary"
                 onClick={() => setOpen(true)}
               >
                 Edit
