@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import wave from "../assets/svg.png";
 import wavetwo from "../assets/svgtwo.png";
 import { Button, Form, Input, Typography } from "antd";
 import hulogo from "../assets/image.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import customFetch from "../utils/customFetch";
+import { toast } from "react-toastify";
 const { Text } = Typography;
 
 const VoterRegister = () => {
-  const onFinish = (values) => {
-    console.log("Success:", values);
+  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
+  const onFinish = async (values) => {
+    setLoading(true);
+    try {
+      await customFetch.post("/student/register", values);
+      toast.success(" you are successfully registered,please login to vote");
+      navigate("/voterlogin");
+    } catch (error) {
+      setLoading(false);
+      toast.error(error?.response?.data?.msg);
+    }
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -66,20 +79,8 @@ const VoterRegister = () => {
             autoComplete="off"
           >
             <Form.Item
-              label="Username"
-              name="username"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input your username!",
-                },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item
               label="student ID"
-              name="id"
+              name="studentId"
               rules={[
                 {
                   required: true,
@@ -108,6 +109,7 @@ const VoterRegister = () => {
                 type="primary"
                 htmlType="submit"
                 className="  h-[35px] w-[200px] px-[13px] "
+                loading={loading}
               >
                 Register
               </Button>

@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import wave from "../assets/svg.png";
 import wavetwo from "../assets/svgtwo.png";
 import { Button, Form, Input, Typography } from "antd";
 import hulogo from "../assets/image.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import customFetch from "../utils/customFetch";
+import { toast } from "react-toastify";
 const { Text } = Typography;
 
 const VoterLogin = () => {
-  const onFinish = (values) => {
-    console.log("Success:", values);
+  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
+  const onFinish = async (values) => {
+    setLoading(true);
+    try {
+      await customFetch.post("/student/login", values);
+      toast.success(" successfully logged in");
+      navigate("/dashboard");
+    } catch (error) {
+      setLoading(false);
+      toast.error(error?.response?.data?.msg);
+    }
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -45,8 +58,7 @@ const VoterLogin = () => {
               Voter Login
             </Text>
             <Text className=" text-center  max-w-[400px]">
-              Welcome back to student union online voting system.please login to
-              vote for your preferred candidate.
+              Welcome back! please login to vote for your preferred candidate.
             </Text>
           </div>
         </div>
@@ -67,7 +79,7 @@ const VoterLogin = () => {
           >
             <Form.Item
               label="student ID"
-              name="id"
+              name="studentId"
               rules={[
                 {
                   required: true,
@@ -96,6 +108,7 @@ const VoterLogin = () => {
                 type="primary"
                 htmlType="submit"
                 className="  h-[35px] w-[200px] px-[13px] "
+                loading={loading}
               >
                 Login
               </Button>

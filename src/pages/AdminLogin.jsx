@@ -1,18 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import wave from "../assets/svg.png";
 import wavetwo from "../assets/svgtwo.png";
 import { Button, Form, Input, Typography } from "antd";
 import hulogo from "../assets/image.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import customFetch from "../utils/customFetch";
+import { toast } from "react-toastify";
 const { Text } = Typography;
 
 const AdminLogin = () => {
-  const onFinish = (values) => {
-    console.log("Success:", values);
+  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
+
+  const onFinish = async (values) => {
+    setLoading(true);
+    try {
+      await customFetch.post("/admin/login", values);
+      toast.success(" successfully logged in");
+      navigate("/dashboard");
+    } catch (error) {
+      setLoading(false);
+      toast.error(error?.response?.data?.msg);
+    }
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+
   return (
     <div className="flex flex-col md:flex-row h-screen overflow-hidden ">
       <div className=" w-[200px] h-screen relative   hidden md:block">
@@ -56,12 +71,16 @@ const AdminLogin = () => {
             autoComplete="off"
           >
             <Form.Item
-              label="Username"
-              name="username"
+              label="Email"
+              name="email"
               rules={[
                 {
                   required: true,
-                  message: "Please input your username!",
+                  message: "Please input your email!",
+                },
+                {
+                  type: "email",
+                  message: "The input is not a valid email!",
                 },
               ]}
             >
@@ -86,6 +105,7 @@ const AdminLogin = () => {
                 type="primary"
                 htmlType="submit"
                 className="  h-[35px] w-[200px] px-[13px] "
+                loading={loading}
               >
                 Login
               </Button>

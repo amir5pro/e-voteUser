@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { UploadOutlined } from "@ant-design/icons";
 import { Typography, Avatar, Button, Upload, message } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { MdOutlineEdit } from "react-icons/md";
 import ProfileModal from "../components/ProfileModal";
+import { useDashboardContext } from "./DashboardLayout";
+import { useNavigate } from "react-router-dom";
 const { Text } = Typography;
 
 const props = {
@@ -25,6 +27,15 @@ const props = {
 };
 const Candidate = () => {
   const [open, setOpen] = useState(false);
+
+  const navigate = useNavigate();
+  const { user } = useDashboardContext();
+
+  useEffect(() => {
+    if (user.role !== "candidate") {
+      navigate("/dashboard");
+    }
+  }, []);
   return (
     <div>
       <Text className="text-primary-500 text-[25px]" strong>

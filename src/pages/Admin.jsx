@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form, Input, Typography, DatePicker } from "antd";
 import { CgProfile } from "react-icons/cg";
 import { SlCalender } from "react-icons/sl";
@@ -6,17 +6,38 @@ import { MdOutlineEdit } from "react-icons/md";
 import { FaUserCog } from "react-icons/fa";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
+import { useDashboardContext } from "./DashboardLayout";
+import { useNavigate } from "react-router-dom";
+import ChangePassword from "../components/ChangePassword";
+import VoterRegDate from "../components/VoterRegDate";
+import PreVoteDate from "../components/PreVoteDate";
+import MainVoteDate from "../components/MainVoteDate";
+import AddVoter from "../components/AddVoter";
+import DeleteStudent from "../components/DeleteStudent";
 
 const { RangePicker } = DatePicker;
 const { Text } = Typography;
+
 const Admin = () => {
+  const navigate = useNavigate();
+  const { user } = useDashboardContext();
+  const [passwordOpen, setPasswordOpen] = useState(false);
+  const [addVoterOpen, setAddVoterOpen] = useState(false);
+  const [deleteVoterOpen, setDeleteVoterOpen] = useState(false);
+
+  useEffect(() => {
+    if (user.role !== "admin") {
+      navigate("/dashboard");
+    }
+  }, []);
+
   return (
     <div>
       <div
         className="border border-gray-200  bg-white 
          shadow-lg rounded-2xl p-[15px] mt-[20px]"
       >
-        <div className="flex items-center gap-[15px]">
+        <div className="flex items-center gap-[15px] ">
           <div className="p-[10px] w-[50px] h-[50px] bg-primary-500 rounded-full text-white flex items-center justify-center">
             <CgProfile size={35} />
           </div>
@@ -27,27 +48,20 @@ const Admin = () => {
         <div className="border border-gray-200 my-[15px]"></div>
 
         <div className="flex items-center justify-between py-[5px]">
-          <Text>Change username</Text>
-          <div>
-            <Button
-              type="primary"
-              className="w-[80px]"
-              icon={<MdOutlineEdit />}
-            >
-              Edit{" "}
-            </Button>
-          </div>
-        </div>
-        <div className="flex items-center justify-between py-[5px]">
           <Text>Change Password</Text>
           <div>
             <Button
               type="primary"
               className="w-[80px]"
               icon={<MdOutlineEdit />}
+              onClick={() => setPasswordOpen(true)}
             >
               Edit{" "}
             </Button>
+            <ChangePassword
+              passwordOpen={passwordOpen}
+              setPasswordOpen={setPasswordOpen}
+            />
           </div>
         </div>
       </div>
@@ -65,32 +79,18 @@ const Admin = () => {
         </div>
         <div className="border border-gray-200 my-[15px]"></div>
 
-        <div className="flex flex-col gap-[5px] mb-[5px] lg:mb-0 lg:flex-row items-center justify-between py-[5px] ">
-          <Text> voter registration date</Text>
-          <div className="flex items-center gap-[25px] ">
-            <RangePicker />
-            <Button type="primary" className="w-[80px]">
-              Set{" "}
-            </Button>
-          </div>
+        <div className="flex items-center justify-center ">
+          <VoterRegDate />
         </div>
-        <div className="flex flex-col gap-[5px]  mb-[5px] lg:mb-0  lg:flex-row items-center justify-between  py-[5px]">
-          <Text>preliminary voting date</Text>
-          <div className="flex items-center gap-[25px]">
-            <RangePicker />
-            <Button type="primary" className="w-[80px]">
-              Set{" "}
-            </Button>
-          </div>
+        <div className="border border-gray-100 my-[10px]"></div>
+
+        <div className="flex items-center justify-center">
+          <PreVoteDate />
         </div>
-        <div className="flex flex-col gap-[5px]  mb-[5px] lg:mb-0  lg:flex-row items-center justify-between  py-[5px]">
-          <Text>main voting date</Text>
-          <div className="flex items-center gap-[25px]">
-            <RangePicker />
-            <Button type="primary" className="w-[80px]">
-              Set{" "}
-            </Button>
-          </div>
+        <div className="border border-gray-100 my-[10px]"></div>
+
+        <div className="flex items-center justify-center">
+          <MainVoteDate />
         </div>
       </div>
       <div
@@ -108,37 +108,39 @@ const Admin = () => {
         <div className="border border-gray-200 my-[15px]"></div>
 
         <div className="flex items-center justify-between py-[5px]">
-          <Text>Add voter</Text>
+          <Text>Add Voter</Text>
           <div>
-            <Button type="primary" className="w-[100px]" icon={<IoMdAdd />}>
+            <Button
+              type="primary"
+              className="w-[100px]"
+              icon={<IoMdAdd />}
+              onClick={() => setAddVoterOpen(true)}
+            >
               Add{" "}
             </Button>
           </div>
         </div>
+        <AddVoter
+          addVoterOpen={addVoterOpen}
+          setAddVoterOpen={setAddVoterOpen}
+        />
         <div className="flex items-center justify-between py-[5px]">
-          <Text>Delete voter</Text>
+          <Text>Delete voter </Text>
           <div>
             <Button
               type="primary"
               className="w-[100px]"
               icon={<MdOutlineDeleteOutline />}
+              onClick={() => setDeleteVoterOpen(true)}
             >
               Delete{" "}
             </Button>
           </div>
         </div>
-        <div className="flex items-center justify-between py-[5px]">
-          <Text>Delete candidate</Text>
-          <div>
-            <Button
-              type="primary"
-              className="w-[100px]"
-              icon={<MdOutlineDeleteOutline />}
-            >
-              Delete{" "}
-            </Button>
-          </div>
-        </div>
+        <DeleteStudent
+          deleteVoterOpen={deleteVoterOpen}
+          setDeleteVoterOpen={setDeleteVoterOpen}
+        />
       </div>
     </div>
   );

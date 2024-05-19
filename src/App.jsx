@@ -16,6 +16,8 @@ import Results from "./pages/Results";
 import Stats from "./pages/Stats";
 import Admin from "./pages/Admin";
 
+import { loader as dashboardLoader } from "./pages/DashboardLayout";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -46,6 +48,7 @@ const router = createBrowserRouter([
       {
         path: "dashboard",
         element: <DashboardLayout />,
+        loader: dashboardLoader,
         children: [
           {
             index: true,
