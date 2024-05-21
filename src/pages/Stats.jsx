@@ -1,25 +1,41 @@
 import React from "react";
 import { Typography, Progress } from "antd";
 import AreaChartComponent from "../components/AreaChart";
+import { useLoaderData } from "react-router-dom";
+import customFetch from "../utils/customFetch";
 const { Text } = Typography;
 
+export const loader = async () => {
+  try {
+    const { data } = await customFetch("/student/stats");
+
+    return data;
+  } catch (error) {
+    return null;
+  }
+};
+
 const Stats = () => {
-  const totalVoters = 100;
-  const votedVoters = 75;
+  const loaderData = useLoaderData();
 
-  const voterTurnoutPercentage = (votedVoters / totalVoters) * 100;
+  const { totalEligibleVoters, totalVoters, voterBasedOnGender } =
+    loaderData || {};
 
-  const data = [
-    { date: "2024-04-01", maleVotes: 50, femaleVotes: 15 },
-    { date: "2024-04-02", maleVotes: 20, femaleVotes: 30 },
-    { date: "2024-04-03", maleVotes: 30, femaleVotes: 42 },
-    { date: "2024-04-03", maleVotes: 10, femaleVotes: 23 },
-    { date: "2024-04-03", maleVotes: 45, femaleVotes: 5 },
-    { date: "2024-04-03", maleVotes: 22, femaleVotes: 11 },
-    { date: "2024-04-03", maleVotes: 3, femaleVotes: 2 },
+  if (
+    !totalEligibleVoters ||
+    !totalVoters ||
+    !voterBasedOnGender ||
+    voterBasedOnGender.length === 0
+  ) {
+    return <Text>No statistics are available!</Text>;
+  }
 
-    // Add more data points as needed
-  ];
+  const transformedData = voterBasedOnGender.map(({ _id, count }) => ({
+    gender: _id,
+    voters: count,
+  }));
+
+  const voterTurnoutPercentage = (totalVoters / totalEligibleVoters) * 100;
   return (
     <div>
       <Text className="text-primary-500 text-[20px]" strong>
@@ -38,7 +54,7 @@ const Stats = () => {
             strokeColor="#242f9c"
             steps={10}
             percent={100}
-            format={() => totalVoters}
+            format={() => totalEligibleVoters}
           />
         </div>
         <div
@@ -52,8 +68,8 @@ const Stats = () => {
             strokeWidth={20}
             strokeColor="#242f9c"
             steps={10}
-            percent={(votedVoters / totalVoters) * 100}
-            format={() => votedVoters}
+            percent={(totalVoters / totalEligibleVoters) * 100}
+            format={() => totalVoters}
           />
         </div>
         <div
@@ -77,7 +93,7 @@ const Stats = () => {
         </Text>
       </div>
       <div>
-        <AreaChartComponent data={data} />
+        <AreaChartComponent data={transformedData} />
       </div>
     </div>
   );

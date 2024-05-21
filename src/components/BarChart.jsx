@@ -15,15 +15,15 @@ const BarChartComponent = ({ data }) => {
       <BarChart data={data} margin={{ top: 50 }}>
         <CartesianGrid strokeDasharray="3 3 " />
         <XAxis
-          dataKey="candidate"
-          label={{ value: "Candidates", position: "insideBottom", offset: -10 }}
+          dataKey="name"
+          label={{ value: "name", position: "insideBottom", offset: -10 }}
         />
         <YAxis
           allowDecimals={false}
           label={{ value: "Votes", angle: -90, position: "insideLeft" }}
         />
         <Tooltip />
-        <Bar dataKey="votes" barSize={50} fill="#242f9c">
+        <Bar dataKey="Votes" barSize={10} fill="#242f9c">
           {data.map((entry, index) => (
             <Bar key={`bar-${index}`} dataKey="votes" />
           ))}

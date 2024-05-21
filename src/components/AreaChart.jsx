@@ -14,22 +14,15 @@ const AreaChartComponent = ({ data }) => {
     <ResponsiveContainer width="100%" height={300}>
       <AreaChart data={data}>
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="date" />
+        <XAxis dataKey="gender" />
         <YAxis />
         <Tooltip />
         <Area
           type="monotone"
-          dataKey="maleVotes"
+          dataKey="voters"
           stackId="1"
           stroke="#242f9c"
           fill="#242f9c"
-        />
-        <Area
-          type="monotone"
-          dataKey="femaleVotes"
-          stackId="1"
-          stroke="#b5c1ff"
-          fill="#b5c1ff"
         />
       </AreaChart>
     </ResponsiveContainer>

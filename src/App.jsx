@@ -18,6 +18,8 @@ import Admin from "./pages/Admin";
 
 import { loader as dashboardLoader } from "./pages/DashboardLayout";
 import { loader as voteLoader } from "./pages/Vote";
+import { loader as resultLoader } from "./pages/Results";
+import { loader as statsLoader } from "./pages/Stats";
 
 const router = createBrowserRouter([
   {
@@ -67,10 +69,12 @@ const router = createBrowserRouter([
           {
             path: "results",
             element: <Results />,
+            loader: resultLoader,
           },
           {
             path: "stats",
             element: <Stats />,
+            loader: statsLoader,
           },
           {
             path: "admin",

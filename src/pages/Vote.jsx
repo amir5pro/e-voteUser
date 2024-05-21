@@ -23,7 +23,8 @@ const Vote = () => {
   const [selectedCandidate, setSelectedCandidate] = useState(null); // State to keep track of the selected candidate
   const [selectedCandidateDetails, setSelectedCandidateDetails] =
     useState(null);
-  const { data } = useLoaderData();
+  const loaderData = useLoaderData();
+  const { data } = loaderData || {};
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -54,7 +55,7 @@ const Vote = () => {
     }
   };
 
-  if (data.length === 0) {
+  if (!data || data.length === 0) {
     return <Text>No candidates are available!</Text>;
   }
 
@@ -62,11 +63,7 @@ const Vote = () => {
     <div>
       <div>
         <div className="flex flex-col items-center">
-          <Text className="text-primary-500 text-[25px] mb-[15px]" strong>
-            You may now cast your vote!
-          </Text>
-
-          <Text>You can only vote for one candidate</Text>
+          <Text strong>You can only vote for one candidate</Text>
         </div>
         <div className="grid gap-[25px] grid-cols-1 md:grid-cols-2 lg:grid-cols-3  2xl:grid-cols-4 py-[15px]  place-items-center">
           {data.map(
