@@ -1,12 +1,24 @@
 import React, { useState } from "react";
 
 import { Button, Modal, Form, Input } from "antd";
+import customFetch from "../utils/customFetch";
+import { toast } from "react-toastify";
 
 const ProfileModal = ({ open, setOpen }) => {
   const [loading, setLoading] = useState(false);
 
-  const onFinish = (values) => {
-    console.log("Success:", values);
+  const onFinish = async (values) => {
+    setLoading(true);
+
+    try {
+      await customFetch.post("/candidate/addInfo", values);
+      toast.success(" successfully added information");
+      setOpen(false);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      toast.error(error?.response?.data?.msg);
+    }
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -38,7 +50,7 @@ const ProfileModal = ({ open, setOpen }) => {
           >
             <Form.Item
               label="Email"
-              name="from_email"
+              name="email"
               rules={[
                 {
                   required: true,
@@ -54,7 +66,7 @@ const ProfileModal = ({ open, setOpen }) => {
             </Form.Item>
 
             <Form.Item
-              name="Phone Number"
+              name="phone"
               label="Phone Number"
               rules={[
                 {

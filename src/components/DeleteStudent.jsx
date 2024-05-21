@@ -61,7 +61,7 @@ const DeleteStudent = ({ deleteVoterOpen, setDeleteVoterOpen }) => {
                 <Select.Option
                   key={student._id}
                   value={student._id}
-                  label={student.name}
+                  label={student._id}
                 >
                   {student.name} {student.studentId}
                 </Select.Option>

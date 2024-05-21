@@ -17,6 +17,7 @@ import Stats from "./pages/Stats";
 import Admin from "./pages/Admin";
 
 import { loader as dashboardLoader } from "./pages/DashboardLayout";
+import { loader as voteLoader } from "./pages/Vote";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,7 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <Vote />,
+            loader: voteLoader,
           },
           {
             path: "preVote",
