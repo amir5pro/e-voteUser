@@ -68,7 +68,16 @@ const Vote = () => {
         <div className="grid gap-[25px] grid-cols-1 md:grid-cols-2 lg:grid-cols-3  2xl:grid-cols-4 py-[15px]  place-items-center">
           {data.map(
             (
-              { candidateId, name, Department, Age, phone, email, Campaign },
+              {
+                candidateId,
+                name,
+                Department,
+                Age,
+                phone,
+                email,
+                Campaign,
+                avatar,
+              },
               index
             ) => {
               return (
@@ -83,7 +92,8 @@ const Vote = () => {
                 >
                   <Avatar
                     size={100}
-                    icon={<UserOutlined />}
+                    icon={avatar ? null : <UserOutlined />}
+                    src={avatar}
                     className=" border-2 border-white"
                   />
 
@@ -116,6 +126,7 @@ const Vote = () => {
                           phone,
                           email,
                           Campaign,
+                          avatar,
                         })
                       }
                     >

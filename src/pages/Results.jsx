@@ -30,7 +30,7 @@ const Results = () => {
   return (
     <div>
       <Text className="text-primary-500 text-[20px]" strong>
-        Live Results
+        Results
       </Text>
 
       <div>

@@ -14,8 +14,9 @@ const DetailsModal = ({
   let email = "";
   let Campaign = "";
   let phone = "";
+  let avatar = "";
   if (selectedCandidateDetails) {
-    ({ name, Department, Age, email, Campaign, phone } =
+    ({ name, Department, Age, email, Campaign, phone, avatar } =
       selectedCandidateDetails);
   }
 
@@ -34,7 +35,8 @@ const DetailsModal = ({
             {" "}
             <Avatar
               size={120}
-              icon={<UserOutlined />}
+              icon={avatar ? null : <UserOutlined />}
+              src={avatar}
               className=" border-2 border-white object-contain"
             />
             <div className="flex flex-col gap-3 items-start">

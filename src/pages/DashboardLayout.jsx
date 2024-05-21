@@ -9,6 +9,7 @@ import {
   redirect,
   useLoaderData,
   useNavigate,
+  useNavigation,
 } from "react-router-dom";
 import Links from "../utils/Links";
 import { IoIosMenu } from "react-icons/io";
@@ -18,6 +19,7 @@ import { toast } from "react-toastify";
 import { FaPowerOff } from "react-icons/fa6";
 import { SlCalender } from "react-icons/sl";
 import DatesModal from "../components/DatesModal";
+import Loading from "../components/Loading";
 
 const { Text } = Typography;
 
@@ -39,6 +41,8 @@ const App = () => {
   const { user } = useLoaderData();
 
   const navigate = useNavigate();
+  const navigation = useNavigation();
+  const isPageLoading = navigation.state === "loading";
 
   const {
     token: { colorBgContainer, borderRadiusLG },
@@ -164,7 +168,8 @@ const App = () => {
                 height: "100%",
               }}
             >
-              <Outlet context={{ user }} />
+              {isPageLoading ? <Loading /> : <Outlet context={{ user }} />}
+
               <DashDrawer
                 openDrawer={openDrawer}
                 setOpenDrawer={setOpenDrawer}

@@ -16,7 +16,11 @@ const Prevote = () => {
       const response = await customFetch(`/student/allStudents`);
       const allStudents = response.data.students;
 
-      setSearchResults(allStudents);
+      if (allStudents && allStudents.length > 0) {
+        setSearchResults(allStudents);
+      } else {
+        setSearchResults([]);
+      }
     } catch (error) {}
   };
 

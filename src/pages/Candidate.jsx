@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { UploadOutlined } from "@ant-design/icons";
-import { Typography, Avatar, Button, Upload, message } from "antd";
+import { Typography, Avatar, Button, message } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { MdOutlineEdit } from "react-icons/md";
 import ProfileModal from "../components/ProfileModal";
@@ -8,27 +8,13 @@ import { useDashboardContext } from "./DashboardLayout";
 import { useNavigate } from "react-router-dom";
 import { FaPhotoFilm } from "react-icons/fa6";
 import { IoIosInformationCircle } from "react-icons/io";
+import { toast } from "react-toastify";
+import customFetch from "../utils/customFetch";
 const { Text } = Typography;
 
-const props = {
-  name: "file",
-  action: "https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload",
-  headers: {
-    authorization: "authorization-text",
-  },
-  onChange(info) {
-    if (info.file.status !== "uploading") {
-      console.log(info.file, info.fileList);
-    }
-    if (info.file.status === "done") {
-      message.success(`${info.file.name} file uploaded successfully`);
-    } else if (info.file.status === "error") {
-      message.error(`${info.file.name} file upload failed.`);
-    }
-  },
-};
 const Candidate = () => {
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
   const { user } = useDashboardContext();
@@ -38,6 +24,36 @@ const Candidate = () => {
       navigate("/dashboard");
     }
   }, []);
+
+  const fileInputRef = useRef(null);
+
+  const handleUpload = () => {
+    const fileInput = fileInputRef.current;
+    fileInput.click();
+  };
+
+  const handleFileChange = async (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const fileSizeInMB = file.size / (1024 * 1024); // Convert file size to MB
+      if (fileSizeInMB <= 0.5) {
+        const formData = new FormData();
+        formData.append("avatar", file);
+        setLoading(true);
+        try {
+          await customFetch.patch("/candidate/addPhoto", formData);
+          toast.success("Profile photo successfully uploaded");
+          setLoading(false);
+        } catch (error) {
+          setLoading(false);
+          toast.error(error?.response?.data?.msg);
+        }
+      } else {
+        // File size exceeds the limit
+        toast.error("File size should be 0.5 MB or less.");
+      }
+    }
+  };
 
   return (
     <div>
@@ -59,11 +75,21 @@ const Candidate = () => {
 
           <div className="flex items-center justify-between py-[5px]">
             <div>
-              <Upload {...props}>
-                <Button icon={<UploadOutlined />} type="primary">
-                  Upload photo
-                </Button>
-              </Upload>
+              <input
+                type="file"
+                ref={fileInputRef}
+                onChange={handleFileChange}
+                style={{ display: "none" }}
+                name="avatar"
+              />
+              <Button
+                icon={<UploadOutlined />}
+                type="primary"
+                onClick={handleUpload}
+                loading={loading}
+              >
+                Upload photo
+              </Button>
             </div>
           </div>
         </div>
