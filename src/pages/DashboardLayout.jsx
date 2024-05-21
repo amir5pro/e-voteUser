@@ -16,6 +16,8 @@ import DashDrawer from "../components/DashDrawer";
 import customFetch from "../utils/customFetch";
 import { toast } from "react-toastify";
 import { FaPowerOff } from "react-icons/fa6";
+import { SlCalender } from "react-icons/sl";
+import DatesModal from "../components/DatesModal";
 
 const { Text } = Typography;
 
@@ -32,6 +34,7 @@ const DashboardContext = createContext();
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [openDrawer, setOpenDrawer] = useState(false);
+  const [openDates, setOpenDates] = useState(false);
 
   const { user } = useLoaderData();
 
@@ -136,12 +139,15 @@ const App = () => {
             <div className="md:hidden  p-[15px]">
               <IoIosMenu size={27} onClick={() => setOpenDrawer(true)} />
             </div>
-            <Text
-              className="absolute top-0 left-[50%] translate-x-[-50%] mt-[20px]  text-primary-500  lg:text-[20px] "
-              strong
-            >
-              Student Union Voting System
-            </Text>
+            <div className="absolute top-0 right-0 py-[15px] pr-[20px]">
+              <div
+                className="flex items-center gap-[5px] px-[15px] py-[6px] bg-primary-500 text-white rounded-md cursor-pointer"
+                onClick={() => setOpenDates(true)}
+              >
+                <Text className="text-white ">Dates</Text>
+                <SlCalender />
+              </div>
+            </div>
           </Header>
           <Content
             style={{
@@ -163,6 +169,7 @@ const App = () => {
                 openDrawer={openDrawer}
                 setOpenDrawer={setOpenDrawer}
               />
+              <DatesModal openDates={openDates} setOpenDates={setOpenDates} />
             </div>
           </Content>
         </Layout>

@@ -11,9 +11,9 @@ const DeleteStudent = ({ deleteVoterOpen, setDeleteVoterOpen }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [selectedStudentId, setSelectedStudentId] = useState(null);
 
-  const searchStudents = async (query) => {
+  const searchStudents = async () => {
     try {
-      const response = await customFetch(`/student/allStudents?name=${query}`);
+      const response = await customFetch(`/student/allStudents`);
       const allStudents = response.data.students;
 
       setSearchResults(allStudents);
@@ -53,7 +53,7 @@ const DeleteStudent = ({ deleteVoterOpen, setDeleteVoterOpen }) => {
           <div>
             <Select
               showSearch
-              onSearch={searchStudents} // Call searchStudents on each search input change
+              onClick={searchStudents}
               onChange={(value) => setSelectedStudentId(value)}
               className="w-[200px] md:w-[250px] xl:w-[300px]"
             >
@@ -73,6 +73,7 @@ const DeleteStudent = ({ deleteVoterOpen, setDeleteVoterOpen }) => {
             type="primary"
             onClick={() => handleDeleteStudent()}
             loading={loading}
+            className="mt-[20px]"
           >
             Delete voter
           </Button>
