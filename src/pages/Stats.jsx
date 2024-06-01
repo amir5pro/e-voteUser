@@ -41,7 +41,7 @@ const Stats = () => {
       <Text className="text-primary-500 text-[20px]" strong>
         Election Statistics
       </Text>
-      <div className="grid grid-cols-2 md:grid-cols-3 mt-[20px] gap-[5px] md:gap-[20px] xl:gap-[50px] lg:px-[30px]">
+      <div className="grid grid-cols-1 sm:grid-cols-3 mt-[20px] gap-[20px] sm:gap-[5px] md:gap-[20px] xl:gap-[50px] lg:px-[30px]">
         <div
           className="flex flex-col-reverse gap-[20px] border border-gray-200  bg-white 
          shadow-lg rounded-2xl p-[15px] border-b-primary-500 border-b-[5px]"

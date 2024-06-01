@@ -15,6 +15,7 @@ import Candidate from "./pages/Candidate";
 import Results from "./pages/Results";
 import Stats from "./pages/Stats";
 import Admin from "./pages/Admin";
+import Error from "./pages/Error";
 
 import { loader as dashboardLoader } from "./pages/DashboardLayout";
 import { loader as voteLoader } from "./pages/Vote";
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <LandingLayout />,
+    errorElement: <Error />,
     children: [
       {
         index: true,

@@ -40,19 +40,31 @@ const DetailsModal = ({
               className=" border-2 border-white object-contain"
             />
             <div className="flex flex-col gap-3 items-start">
-              <Text>Name: {name ? name : "Info not added"}</Text>
-              <Text>
-                Department: {Department ? Department : "Info Not added"}
-              </Text>
+              <div>
+                {" "}
+                <Text strong>Name:</Text>
+                <Text> {name ? name : "Info not added"}</Text>
+              </div>
+              <div>
+                <Text strong> Department:</Text>
+                <Text> {Department ? Department : "Info Not added"}</Text>
+              </div>
             </div>
           </div>
 
           <div className="flex items-center justify-start gap-[20px] mt-[30px]">
-            <Text>Age: {Age ? Age : "Info Not added"}</Text>
-            <Text>Email: {email ? email : "Info Not added"}</Text>
+            <div>
+              <Text strong>Age:</Text>
+              <Text> {Age ? Age : "Info Not added"}</Text>
+            </div>
+            <div>
+              <Text strong>Email:</Text>{" "}
+              <Text> {email ? email : "Info Not added"}</Text>
+            </div>
           </div>
-          <div className="flex items-center  mt-[30px]">
-            <Text>Phone: {phone ? phone : "Info Not added"}</Text>
+          <div className="flex items-center gap-1  mt-[30px]">
+            <Text strong>Phone:</Text>
+            <Text> {phone ? phone : "Info Not added"}</Text>
           </div>
           <div className="flex flex-col mt-[30px]">
             <Text strong>Campaign</Text>

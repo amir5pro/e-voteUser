@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Drawer, Typography } from "antd";
 import { Link } from "react-router-dom";
+import hulogo from "../assets/image.png";
 
 const { Text } = Typography;
 const LandingDrawer = ({ setOpenHomeDrawer, openHomeDrawer }) => {
@@ -25,18 +26,34 @@ const LandingDrawer = ({ setOpenHomeDrawer, openHomeDrawer }) => {
     <div>
       <Drawer onClose={onClose} open={openHomeDrawer} placement="right">
         <div className="w-full  flex flex-col gap-[20px] items-center">
+          <div>
+            <img
+              src={hulogo}
+              className=" h-[130px] w-[130px]    mb-[40px]"
+              alt="logo"
+            />
+          </div>
           <Link to="voterlogin">
-            <Text className=" hover:cursor-pointer hover:opacity-80" strong>
+            <Text
+              className=" hover:cursor-pointer hover:opacity-80 text-[20px]"
+              strong
+            >
               Voter Login
             </Text>
           </Link>
           <Link to="candidatelogin">
-            <Text className=" hover:cursor-pointer hover:opacity-80" strong>
+            <Text
+              className=" hover:cursor-pointer hover:opacity-80 text-[20px]"
+              strong
+            >
               candidate Login
             </Text>
           </Link>
           <Link to="adminlogin">
-            <Text className="hover:cursor-pointer hover:opacity-80 " strong>
+            <Text
+              className="hover:cursor-pointer hover:opacity-80 text-[20px] "
+              strong
+            >
               Admin Login
             </Text>
           </Link>{" "}
