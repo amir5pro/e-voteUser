@@ -56,7 +56,11 @@ const Vote = () => {
   };
 
   if (!data || data.length === 0) {
-    return <Text>No candidates are available!</Text>;
+    return (
+      <div className="h-full  flex items-center justify-center">
+        <Text className="text-[20px]">No candidates are available!</Text>
+      </div>
+    );
   }
 
   return (

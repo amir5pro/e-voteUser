@@ -27,7 +27,11 @@ const Stats = () => {
     !voterBasedOnGender ||
     voterBasedOnGender.length === 0
   ) {
-    return <Text>No statistics are available!</Text>;
+    return (
+      <div className="h-full  flex items-center justify-center">
+        <Text className="text-[20px]">No stats are available!</Text>
+      </div>
+    );
   }
 
   const transformedData = voterBasedOnGender.map(({ _id, count }) => ({

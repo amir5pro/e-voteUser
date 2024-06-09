@@ -21,12 +21,16 @@ const Results = () => {
   const [dotPosition, setDotPosition] = useState("top");
   const loaderData = useLoaderData();
   const { data, totalVotes } = loaderData || {};
-  const resultData = Object.values(data);
 
   if (!data || !totalVotes || data.length === 0) {
-    return <Text>No results are available!</Text>;
+    return (
+      <div className="h-full  flex items-center justify-center">
+        <Text className="text-[20px]">No results are available!</Text>
+      </div>
+    );
   }
 
+  const resultData = Object.values(data);
   return (
     <div>
       <Text className="text-primary-500 text-[20px]" strong>
