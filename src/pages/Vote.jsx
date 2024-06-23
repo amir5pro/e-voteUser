@@ -46,7 +46,7 @@ const Vote = () => {
         await customFetch.post(`/student/candidates/${selectedCandidate}`);
 
         toast.success("successfully voted");
-        navigate("results");
+
         setLoading(false);
       } catch (error) {
         toast.error(error?.response?.data?.msg);

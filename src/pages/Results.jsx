@@ -57,7 +57,7 @@ const Results = () => {
                   key={index}
                   className="flex flex-col gap-[10px] border-b-primary-500 border-b-[5px] border border-gray-200  bg-white shadow-lg rounded-2xl p-[7px]"
                 >
-                  {position <= 4 && (
+                  {position <= 4 && Votes > 0 && (
                     <Badge
                       count={topBadges[position - 1]}
                       style={{ backgroundColor: "#52c41a" }}
