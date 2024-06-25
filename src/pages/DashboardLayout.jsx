@@ -20,12 +20,13 @@ import { FaPowerOff } from "react-icons/fa6";
 import { SlCalender } from "react-icons/sl";
 import DatesModal from "../components/DatesModal";
 import Loading from "../components/Loading";
-
+import Cookies from "js-cookie";
 const { Text } = Typography;
 
 export const loader = async () => {
   try {
     const { data } = await customFetch("/user/current-user");
+
     return data;
   } catch (error) {
     return redirect("/");
@@ -39,7 +40,6 @@ const App = () => {
   const [openDates, setOpenDates] = useState(false);
 
   const { user } = useLoaderData();
-
   const navigate = useNavigate();
   const navigation = useNavigation();
   const isPageLoading = navigation.state === "loading";
@@ -50,9 +50,10 @@ const App = () => {
 
   const logoutUser = async (req, res) => {
     navigate("/");
-    await customFetch.get("/logout");
+    Cookies.remove("token");
     toast.success("Logging out...");
   };
+
   return (
     <DashboardContext.Provider value={{ user, logoutUser }}>
       <Layout hasSider>

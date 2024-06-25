@@ -6,18 +6,24 @@ import hulogo from "../assets/image.png";
 import { Link, useNavigate } from "react-router-dom";
 import customFetch from "../utils/customFetch";
 import { toast } from "react-toastify";
+import Cookies from "js-cookie";
 const { Text } = Typography;
 
 const CandidateLogin = () => {
   const [loading, setLoading] = useState(false);
+  const oneDay = 1000 * 60 * 60 * 24;
 
   const navigate = useNavigate();
   const onFinish = async (values) => {
     setLoading(true);
     try {
-      await customFetch.post("/candidate/login", values);
-      toast.success(" successfully logged in");
+      const { data } = await customFetch.post("/candidate/login", values);
+      Cookies.set("token", data.dataToken, {
+        expires: new Date(Date.now() + oneDay),
+      });
+
       navigate("/dashboard");
+      toast.success(" successfully logged in");
     } catch (error) {
       setLoading(false);
       toast.error(error?.response?.data?.msg);
